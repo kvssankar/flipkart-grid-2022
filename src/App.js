@@ -1,15 +1,15 @@
-import { Switch } from "@chakra-ui/react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
-function App() {
+const App = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <h1 className="text-3xl font-bold text-blue-600">
-      Install & Setup  React + Tailwind CSS 3 + Chakra UI
-      </h1>
-      <Switch size='lg' className="m-2 mt-3"/>
-    </div>
-
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
   );
-}
+};
 
 export default App;
