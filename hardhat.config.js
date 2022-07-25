@@ -1,6 +1,8 @@
 require("@nomiclabs/hardhat-waffle");
 
 const fs = require("fs");
+
+// The private key is the private key of the metamask account
 const private_key = fs.readFileSync(".secret").toString();
 
 module.exports = {
