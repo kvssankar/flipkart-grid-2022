@@ -47,6 +47,16 @@ const App = () => {
         console.log(err);
       });
   };
+  const buyProduct = (id) => {
+    axios
+      .post("/api/product/buyProduct", { id })
+      .then((res) => {
+        setMyproducts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const deleteProduct = (id) => {
     axios
       .post("/api/product/deleteProduct/", { id })
@@ -89,7 +99,8 @@ const App = () => {
   };
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<Login login={login} />} />
+      <Route path="/register" element={<Login login={login} />} />
       <Route path="/home" element={<Home />} />
     </Routes>
   );

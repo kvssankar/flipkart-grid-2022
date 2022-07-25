@@ -38,23 +38,24 @@ router.post("/buyProduct", verify, async (req, res) => {
   const inoviceSaved = await invoice.save();
   await Product.findByIdAndUpdate(id, { invoice: inoviceSaved._id });
 
-  res.json({ mssg: "Product bought successfully" });
+  const products = await Product.find({ user: req.user._id });
+  res.json(products);
 });
 
 router.get("/allProducts", verify, async (req, res) => {
   //get products where invoice is not null
   const products = await Product.find({ invoice: { $ne: null } });
-  res.send(products);
+  res.json(products);
 });
 
 router.get("/myProducts", verify, async (req, res) => {
   const products = await Product.find({ user: req.user._id });
-  res.send(products);
+  res.json(products);
 });
 
 router.get("/myOrders", verify, async (req, res) => {
   const invoices = await Invoice.find({ user: req.user._id });
-  res.send(invoices);
+  res.json(invoices);
 });
 
 module.exports = router;
