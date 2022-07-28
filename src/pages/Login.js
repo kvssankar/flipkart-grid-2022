@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AppHeader from "../components/AppHeader";
 import {
   Flex,
   Heading,
@@ -16,30 +17,35 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 
-const Login = () => {
+const Login = ({ loginfunc, logoutfunc }) => {
+  const localtoken = localStorage.getItem("token");
+  const [token, setToken] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
   return (
-    <Flex
-      flexDirection="column"
-      width="100wh"
-      height="100vh"
-      backgroundColor="gray.200"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Stack
-        flexDir="column"
-        mb="2"
+    <div>
+      <AppHeader />
+      <Flex
+        flexDirection="column"
+        width="100wh"
+        height="100vh"
+        backgroundColor="gray.200"
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
-          <form>
+        <Stack
+          flexDir="column"
+          mb="2"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Avatar bg="teal.500" />
+          <Heading color="teal.400">Welcome</Heading>
+          <Box minW={{ base: "90%", md: "468px" }}>
             <Stack
               spacing={4}
               p="1rem"
@@ -72,7 +78,12 @@ const Login = () => {
                       </svg>
                     }
                   />
-                  <Input type="email" placeholder="email address" />
+                  <Input
+                    type="email"
+                    placeholder="email address"
+                    name="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -105,6 +116,8 @@ const Login = () => {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
@@ -122,20 +135,31 @@ const Login = () => {
                 variant="solid"
                 colorScheme="teal"
                 width="full"
+                onClick={() => loginfunc(email, password)}
               >
                 Login
               </Button>
+              <Button
+                borderRadius={0}
+                type="submit"
+                variant="solid"
+                colorScheme="teal"
+                width="full"
+                onClick={() => logoutfunc(localtoken)}
+              >
+                Logout
+              </Button>
             </Stack>
-          </form>
+          </Box>
+        </Stack>
+        <Box>
+          New to us?{" "}
+          <Link color="teal.500" href="/register">
+            Sign Up
+          </Link>
         </Box>
-      </Stack>
-      <Box>
-        New to us?{" "}
-        <Link color="teal.500" href="#">
-          Sign Up
-        </Link>
-      </Box>
-    </Flex>
+      </Flex>
+    </div>
   );
 };
 

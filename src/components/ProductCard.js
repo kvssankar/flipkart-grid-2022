@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
         />
       </div>
       <div className="bottom">
-        <h1 className="text-xl font-bold">Oppo Reno 8</h1>
+        <h1 className="text-xl font-bold">{product.name}</h1>
         <p className="text-sm mb-3">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam,
           porro? Quisquam vitae neque, dolores ducimus, aliquid autem

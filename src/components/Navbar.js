@@ -20,12 +20,22 @@ import {
   FiMenu,
 } from "react-icons/fi";
 
-const LinkItems = [
-  { name: "Explore", icon: FiCompass, nav: 0 },
-  { name: "My Orders", icon: FiShoppingBag, nav: 1 },
-  { name: "My Products", icon: FiTruck, nav: 2 },
-  { name: "Settings", icon: FiSettings, nav: 3 },
-];
+const localuser = localStorage.getItem("user");
+var LinkItems = [];
+
+if (localuser) {
+  LinkItems = [
+    { name: "Explore", icon: FiCompass, nav: 0 },
+    { name: "My Orders", icon: FiShoppingBag, nav: 1 },
+    { name: "My Products", icon: FiTruck, nav: 2 },
+    { name: "Settings", icon: FiSettings, nav: 3 },
+  ];
+} else {
+  LinkItems = [
+    { name: "Explore", icon: FiCompass, nav: 0 },
+    { name: "Settings", icon: FiSettings, nav: 3 },
+  ];
+}
 
 export default function SimpleSidebar({ setNav, children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();

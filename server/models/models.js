@@ -7,6 +7,7 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   date: { type: Date, default: Date.now },
+  products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
 });
 
 const productSchema = new Schema({
@@ -17,7 +18,7 @@ const productSchema = new Schema({
   date: { type: Date, default: Date.now },
   user: { type: Schema.Types.ObjectId, ref: "User" },
   image: { type: String, required: true },
-  invoice: { type: Schema.Types.ObjectId, ref: "Invoice" , default : null},
+  invoice: { type: Schema.Types.ObjectId, ref: "Invoice", default: null },
   warranty: {
     months: { type: Number, required: true },
     coverage: { type: Number, required: true },
