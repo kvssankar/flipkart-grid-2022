@@ -17,10 +17,10 @@ const productSchema = new Schema({
   date: { type: Date, default: Date.now },
   user: { type: Schema.Types.ObjectId, ref: "User" },
   image: { type: String, required: true },
-  invoice: { type: Schema.Types.ObjectId, ref: "Invoice" },
+  invoice: { type: Schema.Types.ObjectId, ref: "Invoice" , default : null},
   warranty: {
     months: { type: Number, required: true },
-    converage: { type: Number, required: true },
+    coverage: { type: Number, required: true },
   },
 });
 

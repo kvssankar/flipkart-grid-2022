@@ -4,14 +4,15 @@ const verify = require("../verify");
 const { Product, Invoice } = require("../models/models");
 
 router.post("/addProduct", verify, async (req, res) => {
-  const { name, price, description, image, months, coverage } = req.body;
+  const { name, price, description, image, warranty } = req.body;
+
   const product = new Product({
     name,
     price,
     description,
     image,
     user: req.user._id,
-    warranty: { months, coverage },
+    warranty: warranty,
   });
   await product.save();
   const products = await Product.find({ user: req.user._id });
@@ -26,14 +27,14 @@ router.post("/deleteProduct", verify, async (req, res) => {
 
 router.post("/buyProduct", verify, async (req, res) => {
   const { id } = req.body;
+
+  const product = await Product.findById(id);
+  console.log(product);
   const invoice = new Invoice({
     user: req.user._id,
+    price : product.price
   });
-  var expiryDate = new Date();
 
-  var y = expiryDate.getFullYear();
-  var m = expiryDate.getMonth();
-  var day = expiryDate.getDate();
 
   const inoviceSaved = await invoice.save();
   await Product.findByIdAndUpdate(id, { invoice: inoviceSaved._id });
@@ -43,8 +44,8 @@ router.post("/buyProduct", verify, async (req, res) => {
 });
 
 router.get("/allProducts", verify, async (req, res) => {
-  //get products where invoice is not null
-  const products = await Product.find({ invoice: { $ne: null } });
+  //get products where invoice is  null
+  const products = await Product.find({ invoice: null });
   res.json(products);
 });
 
