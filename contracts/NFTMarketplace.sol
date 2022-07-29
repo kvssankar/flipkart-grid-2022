@@ -23,6 +23,8 @@ contract NFTMarketplace is ERC721Burnable {
       address payable owner;
       uint256 price;
       bool sold;
+      bool burn;
+      uint256 date;
     }
 
     event MarketItemCreated (
@@ -49,7 +51,7 @@ contract NFTMarketplace is ERC721Burnable {
     }
 
     /* Mints a token and lists it in the marketplace */
-    function createToken( uint256 price) public payable returns (uint) {
+    function createToken( uint256 price, uint256 date) public payable returns (uint) {
       _tokenIds.increment();
       uint256 newTokenId = _tokenIds.current();
 
@@ -57,13 +59,14 @@ contract NFTMarketplace is ERC721Burnable {
       // console.log("Minted token with id: " + Strings.toString(newTokenId.toString());
       console.log("Minted with : " );
       console.log(newTokenId);
-      createMarketItem(newTokenId, price);
+      createMarketItem(newTokenId, price, date);
       return newTokenId;
     }
 
     function createMarketItem(
       uint256 tokenId,
-      uint256 price
+      uint256 price,
+      uint256 date
     ) private {
       require(price > 0, "Price must be at least 1 wei");
       require(msg.value == listingPrice, "Price must be equal to listing price");
@@ -71,9 +74,11 @@ contract NFTMarketplace is ERC721Burnable {
       idToMarketItem[tokenId] =  MarketItem(
         tokenId,
         payable(msg.sender),
-        payable(address(this)),
+        payable(msg.sender),
         price,
-        false
+        false,
+        false,
+        date
       );
 
       _transfer(msg.sender, address(this), tokenId);
@@ -90,6 +95,7 @@ contract NFTMarketplace is ERC721Burnable {
     function resellToken(uint256 tokenId, uint256 price) public payable {
       require(idToMarketItem[tokenId].owner == msg.sender, "Only item owner can perform this operation");
       require(msg.value == listingPrice, "Price must be equal to listing price");
+      // if()
       idToMarketItem[tokenId].sold = false;
       idToMarketItem[tokenId].price = price;
       idToMarketItem[tokenId].seller = payable(msg.sender);
@@ -99,8 +105,6 @@ contract NFTMarketplace is ERC721Burnable {
       _transfer(msg.sender, address(this), tokenId);
     }
 
-    /* Creates the sale of a marketplace item */
-    /* Transfers ownership of the item, as well as funds between parties */
     function createMarketSale(
       uint256 tokenId
       ) public payable {
@@ -159,12 +163,28 @@ contract NFTMarketplace is ERC721Burnable {
     }
     
 
-    function burnNFT(uint256 tokenId) public {
-      burn(tokenId);
-    }
-    //   require(idToMarketItem[tokenId].owner == msg.sender, "Only item owner can perform this operation");
-    //   _burn(tokenId);
-    // }
+
+
+    function burnNFT( uint256 currentDate) public {
+      uint totalItemCount = _tokenIds.current();
+      for (uint tokenId = 0; tokenId < totalItemCount; tokenId++) {
+        // console.log("To");
+        console.log(idToMarketItem[tokenId + 1].owner == msg.sender,currentDate > idToMarketItem[tokenId+ 1].date,idToMarketItem[tokenId + 1].burn == false );
+        console.log(currentDate,idToMarketItem[tokenId+ 1].date);
+        if(idToMarketItem[tokenId + 1].owner == msg.sender && currentDate > idToMarketItem[tokenId+ 1].date &&
+         idToMarketItem[tokenId + 1].burn == false) {
+          console.log("One");
+          burn(tokenId + 1);
+          idToMarketItem[tokenId + 1].owner = payable(address(0));
+          idToMarketItem[tokenId + 1].seller = payable(address(0));
+          idToMarketItem[tokenId + 1].price = 0;
+          idToMarketItem[tokenId + 1].sold = false;
+          idToMarketItem[tokenId + 1].date = 0;
+          idToMarketItem[tokenId + 1].burn = true;
+          _itemsSold.decrement();
+        }
+      }
+    }   
 
     
     function print(uint256 tokenId) public view{
@@ -181,19 +201,20 @@ contract NFTMarketplace is ERC721Burnable {
 
       for (uint i = 0; i < totalItemCount; i++) {
         if (idToMarketItem[i + 1].seller == msg.sender) {
+          console.log("Here");
           itemCount += 1;
         }
       }
 
       MarketItem[] memory items = new MarketItem[](itemCount);
       for (uint i = 0; i < totalItemCount; i++) {
-        if (idToMarketItem[i + 1].seller == msg.sender) {
-          uint currentId = i + 1;
-          MarketItem storage currentItem = idToMarketItem[currentId];
-          items[currentIndex] = currentItem;
-          currentIndex += 1;
+          if (idToMarketItem[i + 1].seller == msg.sender) {
+            uint currentId = i + 1;
+            MarketItem storage currentItem = idToMarketItem[currentId];
+            items[currentIndex] = currentItem;
+            currentIndex += 1;
+          }
         }
-      }
       return items;
     }
 }
