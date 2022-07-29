@@ -442,8 +442,8 @@
       ]
     },
     "E:\\grid\\flipkart-grid-2022\\contracts\\NFTMarketplace.sol": {
-      "lastModificationDate": 1659068346504,
-      "contentHash": "6e7237b30b7af9ef07c1ede26d3b4399",
+      "lastModificationDate": 1659101323615,
+      "contentHash": "e0c1a503a567bc8ef7f2ad736536b38e",
       "sourceName": "contracts/NFTMarketplace.sol",
       "solcConfig": {
         "version": "0.8.4",
