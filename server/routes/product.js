@@ -55,9 +55,13 @@ router.get("/allProducts", async (req, res) => {
   res.json(products);
 });
 
-router.get("/myProducts", verify, async (req, res) => {
-  const products = await Product.find({ user: req.user._id });
-  res.json(products);
+router.post("/myProducts", async (req, res) => {
+  console.log("MY PRODUCTS ROUTE HIT");
+  console.log(req.body);
+  const products = await Product.find({ user: req.body.userid });
+  console.log(products);
+  if (products) res.json(products);
+  else res.json({ status: "Error" });
 });
 
 router.get("/myOrders", verify, async (req, res) => {
@@ -65,4 +69,12 @@ router.get("/myOrders", verify, async (req, res) => {
   res.json(invoices);
 });
 
+router.post("/getProduct", async (req, res) => {
+  console.log("GET PRODUCT ROUTE HTI");
+  console.log(req.body);
+  const product = await Product.findById(req.body.product_id);
+  console.log(product);
+  if (product) res.json({ product: product });
+  else res.json({ status: "Error, product not found" });
+});
 module.exports = router;
