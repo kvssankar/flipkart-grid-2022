@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "chai": "^4.3.6",
     "dotenv": "^16.0.1",
+    "ether-converter": "^0.0.16",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.9",
     "framer-motion": "^6.5.1",

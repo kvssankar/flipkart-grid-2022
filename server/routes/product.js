@@ -14,9 +14,8 @@ router.post("/addProduct", verify, async (req, res) => {
     user: req.user._id,
     warranty: warranty,
   });
-  await product.save();
-  const products = await Product.find({ user: req.user._id });
-  res.json(products);
+  const savedp = await product.save();
+  res.json(savedp);
 });
 
 router.post("/deleteProduct", verify, async (req, res) => {
@@ -32,9 +31,8 @@ router.post("/buyProduct", verify, async (req, res) => {
   console.log(product);
   const invoice = new Invoice({
     user: req.user._id,
-    price : product.price
+    price: product.price,
   });
-
 
   const inoviceSaved = await invoice.save();
   await Product.findByIdAndUpdate(id, { invoice: inoviceSaved._id });
