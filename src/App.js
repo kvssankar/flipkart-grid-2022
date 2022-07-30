@@ -8,12 +8,7 @@ import Register from "./pages/Register";
 const App = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const [myproducts, setMyproducts] = useState(
-    JSON.parse(localStorage.getItem("myproducts"))
-  );
-  const [allproducts, setAllproducts] = useState(
-    JSON.parse(localStorage.getItem("allproducts"))
-  );
+
   const [invoices, setInvoices] = useState(
     JSON.parse(localStorage.getItem("invoices"))
   );
@@ -45,40 +40,11 @@ const App = () => {
         console.log(err);
       });
   };
-  const addProduct = (name, description, price, img, months, coverage) => {
-    const config = {
-      headers: {
-        "auth-token": localStorage.getItem("auth-token"),
-      },
-    };
-    axios
-      .post(
-        "/api/product/addProduct",
-        {
-          name,
-          description,
-          price,
-          image: img,
-          warranty: {
-            months,
-            coverage,
-          },
-        },
-        config
-      )
-      .then((res) => {
-        setMyproducts(res.data);
-        localStorage.setItem("myproducts", JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
   const buyProduct = (id) => {
     axios
       .post("/api/product/buyProduct", { id })
       .then((res) => {
-        setMyproducts(res.data);
         localStorage.setItem("myproducts", JSON.stringify(res.data));
       })
       .catch((err) => {
@@ -89,18 +55,6 @@ const App = () => {
     axios
       .post("/api/product/deleteProduct/", { id })
       .then((res) => {
-        setMyproducts(res.data);
-        localStorage.setItem("myproducts", JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const getMyProducts = () => {
-    axios
-      .get("/api/product/myProducts")
-      .then((res) => {
-        setMyproducts(res.data);
         localStorage.setItem("myproducts", JSON.stringify(res.data));
       })
       .catch((err) => {
@@ -123,10 +77,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Login login={login} />} />
       <Route path="/register" element={<Register register={register} />} />
-      <Route
-        path="/home"
-        element={<Home addProduct={addProduct} myproducts={myproducts} />}
-      />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 };
