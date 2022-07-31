@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\contracts\\Games.sol": {
-      "lastModificationDate": 1659099625988,
-      "contentHash": "08a2092ab73f3b821f74d28a159952c7",
-      "sourceName": "contracts/Games.sol",
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\contracts\\NFTMarketplace.sol": {
+      "lastModificationDate": 1659244996118,
+      "contentHash": "c11f18dbb77bb60cfd88c3ebe2b6b1c9",
+      "sourceName": "contracts/NFTMarketplace.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
@@ -29,58 +29,21 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
         "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/utils/Strings.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.4"
       ],
       "artifacts": [
-        "Games"
+        "NFTMarketplace"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721Burnable.sol": {
-      "lastModificationDate": 1658501546538,
-      "contentHash": "527e36af89e16c5f3cf37c35a26c2b1b",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../ERC721.sol",
-        "../../../utils/Context.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ERC721Burnable"
-      ]
-    },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1658501545462,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1659200431701,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -114,10 +77,10 @@
         "Counters"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1658501547415,
-      "contentHash": "cf46906c4035f51639a22265066a9e78",
-      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
+      "lastModificationDate": 1659243157409,
+      "contentHash": "8af32effd0536e2971ff8496812a5016",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
@@ -141,51 +104,18 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "../ERC721.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "Strings"
+        "ERC721URIStorage"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\hardhat\\console.sol": {
-      "lastModificationDate": 1658501548775,
-      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
-      "sourceName": "hardhat/console.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.22 <0.9.0"
-      ],
-      "artifacts": [
-        "console"
-      ]
-    },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1658501546529,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
+      "lastModificationDate": 1659243157339,
       "contentHash": "79ff1a7eb801a525aa315fb7a679eede",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -227,10 +157,10 @@
         "ERC721"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1658501545451,
-      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1659200438424,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
@@ -256,14 +186,14 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.0"
+        ">=0.4.22 <0.9.0"
       ],
       "artifacts": [
-        "Context"
+        "console"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1658501547053,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
+      "lastModificationDate": 1659243157879,
       "contentHash": "ec99d946db3685a3630554aa6055bd7f",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -299,8 +229,8 @@
         "IERC721"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1658501547096,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
+      "lastModificationDate": 1659243157930,
       "contentHash": "c22d4395e33763de693fd440c6fd10e1",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -334,8 +264,8 @@
         "IERC721Receiver"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1658501547087,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
+      "lastModificationDate": 1659243157912,
       "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -371,8 +301,8 @@
         "IERC721Metadata"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1658501545312,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
+      "lastModificationDate": 1659243156459,
       "contentHash": "c476b3895a94798b88a4bb97399e6dfe",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -406,8 +336,78 @@
         "Address"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1658501545980,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1659200431699,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
+      "lastModificationDate": 1659243158301,
+      "contentHash": "cf46906c4035f51639a22265066a9e78",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Strings"
+      ]
+    },
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
+      "lastModificationDate": 1659200431954,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -443,8 +443,8 @@
         "ERC165"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1658501546943,
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
+      "lastModificationDate": 1659200432207,
       "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -478,10 +478,10 @@
         "IERC165"
       ]
     },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\contracts\\NFTMarketplace.sol": {
-      "lastModificationDate": 1659111446691,
-      "contentHash": "b748f0a3358266c30a2b1fd2df54965e",
-      "sourceName": "contracts/NFTMarketplace.sol",
+    "E:\\grid\\polygon-ethereum-nextjs-marketplace\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721Burnable.sol": {
+      "lastModificationDate": 1659243157347,
+      "contentHash": "527e36af89e16c5f3cf37c35a26c2b1b",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
@@ -506,126 +506,14 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/security/ReentrancyGuard.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "NFTMarketplace"
-      ]
-    },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\security\\ReentrancyGuard.sol": {
-      "lastModificationDate": 1658501547363,
-      "contentHash": "92f9448b23a90ea3bb932ee55cc3ccce",
-      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ReentrancyGuard"
-      ]
-    },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\contracts\\NFT.sol": {
-      "lastModificationDate": 1657201093929,
-      "contentHash": "2d5cdea94fd3e7701e6df6686b63a9d7",
-      "sourceName": "contracts/NFT.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-        "@openzeppelin/contracts/utils/Counters.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "NFT"
-      ]
-    },
-    "C:\\Users\\kvssa\\Desktop\\projects\\flipkart-grid-2022\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
-      "lastModificationDate": 1658501546608,
-      "contentHash": "8af32effd0536e2971ff8496812a5016",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../ERC721.sol"
+        "../ERC721.sol",
+        "../../../utils/Context.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "ERC721URIStorage"
+        "ERC721Burnable"
       ]
     }
   }
