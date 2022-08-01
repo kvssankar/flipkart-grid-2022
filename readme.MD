@@ -20,6 +20,7 @@ npm run dev
 ```
 
 ## Project Architecture
+<img src ="https://github.com/kvssankar/flipkart-grid-2022/blob/stable-blockchain-video/projectArchitecture.png"> 
 
 ## Team : The Big Billion  Coders
 - [Sriesh Agrawal](https://github.com/Srezzx)
