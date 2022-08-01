@@ -81,7 +81,7 @@ contract NFTMarketplace is ERC721URIStorage {
         price,
         false,
         false,
-        1,
+        6,
         "mongoId"
       );
 
@@ -93,27 +93,27 @@ contract NFTMarketplace is ERC721URIStorage {
         price,
         false,
         false,
-        1,
+        6,
         "mongoId"
       );
     }
 
     /* allows someone to resell a token they have purchased */
-    function returnTrue() public view returns (bool) {
-      return true;
-    }
+    // function returnTrue() public view returns (bool) {
+    //   return true;
+    // }
 
-    function returnFalse() public view returns (bool) {
-      return false;
-    }
+    // function returnFalse() public view returns (bool) {
+    //   return false;
+    // }
 
 
-    function resellToken(uint256 tokenId, uint256 price) public payable {
+    function resellToken(uint256 tokenId, uint256 price, uint256 currentDate) public payable {
       require(idToMarketItem[tokenId].owner == msg.sender, "Only item owner can perform this operation");
       require(msg.value == listingPrice, "Price must be equal to listing price");
-      if(specificBurn(tokenId)){
+      if(specificBurn(tokenId, currentDate)){
         console.log("Pass message that Warranty Already expired hence cannot be transfereed");
-        returnTrue();
+        // returnTrue();
       }else{
         // require(msg.value == listingPrice, "Price must be equal to listing price");
         idToMarketItem[tokenId].sold = false;
@@ -123,13 +123,14 @@ contract NFTMarketplace is ERC721URIStorage {
         _itemsSold.decrement();
         _transfer(msg.sender, address(this), tokenId);
       }
-      returnFalse();
+      // returnFalse();
     }
 
     /* Creates the sale of a marketplace item */
     /* Transfers ownership of the item, as well as funds between parties */
     function createMarketSale(
-      uint256 tokenId
+      uint256 tokenId,
+      uint256  currentDate
       ) public payable {
       uint price = idToMarketItem[tokenId].price;
       address seller = idToMarketItem[tokenId].seller;
@@ -137,6 +138,7 @@ contract NFTMarketplace is ERC721URIStorage {
       idToMarketItem[tokenId].owner = payable(msg.sender);
       idToMarketItem[tokenId].sold = true;
       idToMarketItem[tokenId].seller = payable(address(0));
+      idToMarketItem[tokenId].date = currentDate;
       _itemsSold.increment();
       _transfer(address(this), msg.sender, tokenId);
       payable(owner).transfer(listingPrice);
@@ -161,8 +163,8 @@ contract NFTMarketplace is ERC721URIStorage {
       return items;
     }
 
-    function burnNFT() public {
-      uint256 currentDate = 3;
+    function burnNFT(uint256 currentDate) public {
+      // uint256 currentDate = 3;
       uint totalItemCount = _tokenIds.current();
       for (uint i = 1; i <= totalItemCount; i++) {
         console.log(idToMarketItem[i].owner == msg.sender,currentDate > idToMarketItem[i].date,idToMarketItem[i].burn == false );
@@ -186,14 +188,14 @@ contract NFTMarketplace is ERC721URIStorage {
     }   
 
 
-    function specificBurn(uint256 tokenId) public returns (bool) {
+    function specificBurn(uint256 tokenId, uint256 currentDate) public returns (bool) {
       require(idToMarketItem[tokenId].owner == msg.sender, "Only owner can burn token");
       console.log("In burning function");
       if(idToMarketItem[tokenId].date == 0){
         return false;
       }
 
-      if(3 > idToMarketItem[tokenId].date && idToMarketItem[tokenId].burn == false) {
+      if(currentDate > idToMarketItem[tokenId].date && idToMarketItem[tokenId].burn == false) {
           console.log("Burning token");
           _burn(tokenId);
           idToMarketItem[tokenId].owner = payable(address(0));

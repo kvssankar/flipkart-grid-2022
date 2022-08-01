@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
+// import "./styles.scss";
 import {
   marketplaceAddress
 } from '../config'
@@ -50,7 +52,35 @@ export default function MyAssets() {
     console.log('nft:', nft)
     router.push(`/resell-nft?id=${nft.tokenId}&tokenURI=${nft.tokenURI}`)
   }
-  if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs owned</h1>)
+  if (loadingState === 'loaded' && !nfts.length) return (
+  <div className="ErrorComponent">
+    <div className="face">
+      	<div className="band">
+          <div className="red">
+          </div>
+          <div className="white">
+          </div>
+          <div className="blue">
+          </div>
+        </div>
+        <div className="eyes">
+        </div>
+        <div className="dimples">
+        </div>
+        <div className="mouth">
+        </div>
+      </div>
+      <h1 className="error errortext">No NFTs are here yet</h1>
+      <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+        <Link href="/">
+              <a  className="btn-error">
+                Head to marketplace
+              </a>
+        </Link>
+      </div>
+      
+     {/* <button style={{marign:"0px"}} href="/" className="btn-error">Head to marketplace</button> */}
+  </div>)
   return (
     <div className="flex justify-center">
       <div className="p-4">
@@ -61,7 +91,7 @@ export default function MyAssets() {
                 <img src={nft.image} className="rounded" />
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
-                  <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => listNFT(nft)}>List</button>
+                  <button className="mt-4 w-full bg-blue-500 text-white font-bold py-2 px-12 rounded" onClick={() => listNFT(nft)}>List</button>
                 </div>
               </div>
             ))

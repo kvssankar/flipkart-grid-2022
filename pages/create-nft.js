@@ -4,6 +4,8 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
+const moment = require('moment');
+
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 import {
@@ -14,7 +16,7 @@ import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketp
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null)
-  const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
+  const [formInput, updateFormInput] = useState({ price: '', name: '', description: '',coverage: '', duration : ''})
   const router = useRouter()
 
   async function onChange(e) {
@@ -33,11 +35,11 @@ export default function CreateItem() {
     }  
   }
   async function uploadToIPFS() {
-    const { name, description, price } = formInput
-    if (!name || !description || !price || !fileUrl) return
+    const { name, description, price, coverage,duration} = formInput
+    if (!name || !description || !price || !fileUrl || !coverage || !duration) return
     /* first, upload to IPFS */
     const data = JSON.stringify({
-      name, description, image: fileUrl
+      name, description, image: fileUrl,duration
     })
     try {
       const added = await client.add(data)
@@ -85,6 +87,17 @@ export default function CreateItem() {
           className="mt-2 border rounded p-4"
           onChange={e => updateFormInput({ ...formInput, price: e.target.value })}
         />
+         <input
+          placeholder="Coverage in Eth"
+          className="mt-2 border rounded p-4"
+          onChange={e => updateFormInput({ ...formInput, coverage: e.target.value })}
+        />
+         <input
+          placeholder="Duration of Warranty in Days"
+          className="mt-2 border rounded p-4"
+          onChange={e => updateFormInput({ ...formInput, duration: e.target.value })}
+        />
+
         <input
           type="file"
           name="Asset"
@@ -96,7 +109,7 @@ export default function CreateItem() {
             <img className="rounded mt-4" width="350" src={fileUrl} />
           )
         }
-        <button onClick={listNFTForSale} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">
+        <button onClick={listNFTForSale} className="btn-error-2 ">
           Create NFT
         </button>
       </div>

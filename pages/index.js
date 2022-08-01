@@ -9,13 +9,15 @@ import {
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
+let moment = 5;
+
 export default function Home() {
   const [nfts, setNfts] = useState([])
   const [loadingState, setLoadingState] = useState('not-loaded')
   useEffect(() => {
     loadNFTs()
   }, [])
-  async function loadNFTs() {
+  async function loadNFTs(){
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider()
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, provider)
@@ -64,7 +66,7 @@ export default function Home() {
 
     /* user will be prompted to pay the asking proces to complete the transaction */
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
-    const transaction = await contract.createMarketSale(nft.tokenId, {
+    const transaction = await contract.createMarketSale(nft.tokenId,moment, {
       value: price
     })
     await transaction.wait()
@@ -72,28 +74,32 @@ export default function Home() {
   }
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
+    <div>
     <div className="flex justify-center">
-      <div className="px-4" style={{ maxWidth: '1600px' }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+      <div className=" px-4" style={{ maxWidth: '1600px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 ">
           {
             nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
+              <div key={i} className="card card-1  border shadow overflow-hidden">
+                <img style={{border:"0.5px solid #8a8979"}}src={nft.image} />
                 <div className="p-4">
-                  <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
+                  <p style={{ height: '40px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>
                     <p className="text-gray-400">{nft.description}</p>
                   </div>
+                  {/* <div style={{display:"absolute", top: "10%", right: "10%", padding: "0.5rem", width:"10px", backgroundColor:"green"}}></div> */}
                 </div>
-                <div className="p-4 bg-black">
+                <div className="p-4" style={{backgroundColor:"#8a8979"}}>
                   <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
-                  <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                  <button className="mt-4 w-full bg-blue-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                  <button className="mt-4 w-full bg-green-500 text-white font-bold py-2 px-12 rounded">Warranty LIVE</button>
                 </div>
               </div>
             ))
           }
         </div>
       </div>
+    </div>
     </div>
   )
 }
